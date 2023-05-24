@@ -1,0 +1,13 @@
+---
+apiVersion: "monitoring.coreos.com/v1"
+kind: "PodMonitor"
+metadata:
+  name: "network-metrics-collector-metrics"
+spec:
+  selector:
+    matchLabels:
+      app: "telegraf"
+      purpose: "metrics_collection"
+  podMetricsEndpoints:
+    - port: "int-metrics"
+      interval: "10s"

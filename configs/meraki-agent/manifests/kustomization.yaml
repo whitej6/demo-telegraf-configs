@@ -1,0 +1,21 @@
+---
+apiVersion: "kustomize.config.k8s.io/v1beta1"
+kind: "Kustomization"
+namespace: "network-metrics"
+
+resources:
+  - "telegraf-meraki-agent-01_deployment.yaml"
+  - "telegraf-meraki-agent-02_deployment.yaml"
+  - "telegraf_monitor_deployment.yaml"
+  - "namespace.yaml"
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: "telegraf-meraki-agent-01-conf"
+    files:
+      - "telegraf-meraki-agent-01.conf"
+  - name: "telegraf-meraki-agent-02-conf"
+    files:
+      - "telegraf-meraki-agent-02.conf"
